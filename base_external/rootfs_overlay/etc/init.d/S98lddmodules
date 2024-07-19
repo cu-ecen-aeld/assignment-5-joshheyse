@@ -1,0 +1,28 @@
+#!/bin/sh
+
+cd /lib
+
+case "$1" in
+start)
+  echo "Loding scull"
+  scull_load
+  echo "Loading hello and faulty"
+  module_load hello
+  module_load faulty
+  ;;
+stop)
+  echo "Unloading faulty and hello"
+  module_unload faulty
+  module_unload hello
+  echo "Unloading scull"
+  scull_unload
+  ;;
+*)
+  echo "Usage: $0 {start|stop}"
+  exit 1
+  ;;
+esac
+
+cd -
+
+exit 0
